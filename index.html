@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS Nails</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('main section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+
+        window.onload = () => {
+            showSection('capa');
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const servicosForm = document.getElementById('servicosForm');
+
+            servicosForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const servicosSelecionados = Array.from(document.querySelectorAll('input[name="servicos"]:checked'))
+                    .map(checkbox => checkbox.value);
+
+                if (servicosSelecionados.length === 0) {
+                    alert('Por favor, selecione pelo menos um serviço.');
+                    return;
+                }
+
+                const data = document.getElementById('data').value;
+                const hora = document.getElementById('hora').value;
+
+                if (!data || !hora) {
+                    alert('Por favor, selecione uma data e um horário.');
+                    return;
+                }
+
+                const message = `Olá! Gostaria de agendar para o dia ${data} às ${hora}. Segue a lista de serviços selecionados:\n${servicosSelecionados.join('\n')}. Há horário disponível?`;
+                const phoneNumber = '5547997635119';
+                const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappLink, '_blank');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('capa')">INÍCIO</a></li>
+                <li><a href="#" onclick="showSection('servicos')">SERVIÇOS</a></li>
+                <li><a href="#" onclick="showSection('valores')">AGENDAMENTO</a></li>
+                <li><a href="#" onclick="showSection('portfolio')">PORTFÓLIO</a></li>
+                <li><a href="#" onclick="showSection('contato')">CONTATO</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="capa" style="display: none;">
+            <h1>Suzana</h1>
+            <h1>SOS Nails</h1>
+            <div class="logo">
+                <img src="img/flor1.PNG" alt="Logo">
+            </div>
+            <div class="paragrafo">
+                <p>Resgatamos sua autoestima, porque a beleza não espera emergências</p>
+            </div>
+        </section>
+
+        <section id="portfolio" style="display: none;">
+            <h1>PORTFÓLIO</h1>
+            <div class="portfolio">
+                <div class="portfolio-item">
+                    <img src="./img/unha1.png" alt="Exemplo 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/unha2.png" alt="Exemplo 2">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/unha3.png" alt="Exemplo 3">
+                </div>
+            </div>
+        </section>
+
+        <section id="servicos" style="display: none;">
+            <h1>SERVIÇOS</h1>
+            <div class="servicos">
+                <div class="servico">
+                    <a href="#" onclick="showSection('valores')">
+                        <img src="img/pé.PNG" alt="Depilação">
+                        <p>Depilação</p>
+                    </a>
+                </div>
+                <div class="servico">
+                    <a href="#" onclick="showSection('valores')">    
+                        <img src="img/unha.PNG" alt="Unhas">
+                        <p>Unhas</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="valores" style="display: none;">
+            <h1>VALORES</h1>
+            <form id="servicosForm">
+                <div class="valores">
+                    <div class="valores-item">
+                        <h2>Unhas</h2>
+                        <ul>
+                            <li><input type="checkbox" id="pe_mao" name="servicos" value="Pé e mão - R$ 60,00"> <label for="pe_mao">Pé e mão - R$ 60,00</label></li>
+                            <li><input type="checkbox" id="pe" name="servicos" value="Pé - R$ 30,00"> <label for="pe">Pé - R$ 30,00</label></li>
+                            <li><input type="checkbox" id="mao" name="servicos" value="Mão - R$ 30,00"> <label for="mao">Mão - R$ 30,00</label></li>
+                            <li><input type="checkbox" id="esmaltacao_gel" name="servicos" value="Esmaltação em gel - R$ 80,00"> <label for="esmaltacao_gel">Esmaltação em gel - R$ 80,00</label></li>
+                            <li><input type="checkbox" id="blindagem" name="servicos" value="Blindagem - R$ 60,00"> <label for="blindagem">Blindagem - R$ 60,00</label></li>
+                            <li><input type="checkbox" id="banho_gel" name="servicos" value="Banho de gel - R$ 60,00"> <label for="banho_gel">Banho de gel - R$ 60,00</label></li>
+                            <li><input type="checkbox" id="spa_pes" name="servicos" value="Spa dos pés - R$ 70,00"> <label for="spa_pes">Spa dos pés - R$ 70,00</label></li>
+                            <li><input type="checkbox" id="speed_gel" name="servicos" value="Speed gel - R$ 120,00"> <label for="speed_gel">Speed gel - R$ 120,00</label></li>
+                        </ul>
+                    </div>
+                    <div class="valores-item">
+                        <h2>Depilação</h2>
+                        <ul>
+                            <li><input type="checkbox" id="virilha_completa" name="servicos" value="Virilha completa - R$ 70,00"> <label for="virilha_completa">Virilha completa - R$ 70,00</label></li>
+                            <li><input type="checkbox" id="virilha_simples" name="servicos" value="Virilha simples - R$ 50,00"> <label for="virilha_simples">Virilha simples - R$ 50,00</label></li>
+                            <li><input type="checkbox" id="virilha_cavada" name="servicos" value="Virilha cavada - R$ 70,00"> <label for="virilha_cavada">Virilha cavada - R$ 70,00</label></li>
+                            <li><input type="checkbox" id="axilas" name="servicos" value="Axilas - R$ 25,00"> <label for="axilas">Axilas - R$ 25,00</label></li>
+                            <li><input type="checkbox" id="perna_inteira" name="servicos" value="Perna inteira - R$ 50,00"> <label for="perna_inteira">Perna inteira - R$ 50,00</label></li>
+                            <li><input type="checkbox" id="meia_perna" name="servicos" value="Meia perna - R$ 25,00"> <label for="meia_perna">Meia perna - R$ 25,00</label></li>
+                            <li><input type="checkbox" id="buco" name="servicos" value="Buço - R$ 25,00"> <label for="buco">Buço - R$ 25,00</label></li>
+                            <li><input type="checkbox" id="depilacao_facial" name="servicos" value="Depilação facial completa - R$ 50,00"> <label for="depilacao_facial">Depilação facial completa - R$ 50,00</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+
+                <label for="hora">Horário:</label>
+                <select id="hora" name="hora" required>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                </select>
+
+                <button type="submit">Agendar Serviços Selecionados</button>
+            </form>
+        </section>
+
+        <section id="contato" style="display: none;">
+            <h1>CONTATO</h1>
+            <div class="contato">
+                <p>Instagram: <a href="https://instagram.com/suzanaunhasedepilacao" target="_blank">@suzanaunhasedepilacao</a></p>
+                <p>WhatsApp: <a href="https://api.whatsapp.com/send?phone=5547997635119" target="_blank">47 99763-5119</a></p>
+                <p>Endereço: Rua Oscar Bernardo Beckenhauser, 1233 - São Francisco do Sul</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
